@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import axios from "axios";
-
 import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
 
   const [weatherData, setWeatherData]= useState({ready:false});
+  const [city, setCity]= useState(props.defaultCity);
   
   function handleResponse(response){
     console.log(response.data);
@@ -18,19 +18,35 @@ export default function Weather(props) {
       city: response.data.city,
       description: response.data.condition.description, 
       date: new Date(response.data.time * 1000),
-      iconUrl: "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-
-     
+      iconUrl: "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"     
     });
   
     
   }
 
+  function search(){
+    const apiKey = "6b72d3t9e0a187fb46324o57dba90ad0";  
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`
+  axios.get(apiUrl).then(handleResponse);
+
+  }
+
+  function handleSubmit(event){
+    event.preventDefault();
+    search();
+
+  }
+
+function handleCityChange(event){
+  setCity(event.target.value);
+
+}
+
   if(weatherData.ready){
 
     return (
       <div className="Weather">
-        <form>
+        <form onSumbit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
@@ -38,6 +54,7 @@ export default function Weather(props) {
                 placeholder="Search for a city"
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCityChange}
               />
             </div>
   
@@ -50,14 +67,8 @@ export default function Weather(props) {
         </div>); }
   
   else {
-
-    const apiKey = "6b72d3t9e0a187fb46324o57dba90ad0";
- 
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}`
-
-  axios.get(apiUrl).then(handleResponse);
-
-  return "Loading..."; }
+    search();
+   return "Loading..."; } }
   
 
-  }
+  
