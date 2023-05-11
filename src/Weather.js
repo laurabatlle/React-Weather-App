@@ -46,7 +46,7 @@ function handleCityChange(event){
 
     return (
       <div className="Weather">
-        <form onSumbit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
