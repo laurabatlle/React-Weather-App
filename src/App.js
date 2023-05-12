@@ -8,10 +8,11 @@ function App() {
         <Weather defaultCity="Barcelona" />
       </div>
       <footer>
-        This project is created by Laura Batlle and it is  {" "}
+        This project is created by Laura Batlle and it is{" "}
         <a
           href="https://github.com/laurabatlle/React-Weather-App"
           target="_blank"
+          rel="noreferrer"
         >
           open-sourced in Github
         </a>
