@@ -30,22 +30,3 @@
   position: relative;
   top: -15px;
 }
-
-.Weather .temperature {
-  margin-top: 20px;
-  font-weight: 400;
-  font-size: 60px;
-  color: #03405e;
-  line-height: 70px;
-  margin-left: 10px;
-}
-
-.Weather .unit {
-  font-size: 16px;
-  color: #0972b3;
-  font-weight: 300;
-  position: relative;
-  line-height: 1;
-  top: -34px;
-  margin-left: 5px;
-}
